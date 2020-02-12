@@ -2,6 +2,13 @@ from Encounter import Encounter
 from Classes import Person, Monk, Druid, Paladin, Priest, Shaman
 from time import time as myTime
 
+'''
+This module is the module that will actually be run in order to perform the simulations.
+All of the data required by the script will be retrieved by asking the user during
+run time. If the script encounters an error, sometimes it will tell the user and 
+let them try and fix it, but others will stop the script all together [NEEDS REFINING]
+'''
+
 if __name__ == "__main__":
     # tracking which simulation had the highest count of abilities used
     highestCount = 0
@@ -15,46 +22,50 @@ if __name__ == "__main__":
     allowedNones = 0
     # tracking whether or not we've found results that meet the criteria
     results = False
-    # timing how long the script takes to complete
+
 
     # getting the event times from the user
     eventTimes = Encounter.getEventTimes()
 
+    # aggregating all of the spells that the encounter will have access to. This will be a matrix.
     allSpells = []
     numHealers = int(input("How many healers does your raid have? (2-5)\n"))
     for i in range(numHealers):
-        # add all of the people and their class/specs to the encounter
         print("--- Next Person ---")
+        # add all of the people and their class/specs to the encounte. Returns an array of spells for each class.
         allSpells.append(Encounter.getClassSpells())
         print("Person Successfully Added\n")
+
+    # getting the number of simulations the user would like to run
+
+    # (note) since this script is mostly just trying random permutations and seeing which ends with the best results,
+    # the higher the number of simulations, the more accurate it will be. I have noticed that ~100,000 simulations 
+    # seems to be enough to get an accurate result almost every time. 100,000 simulations takes approximately 
+    # 2 minutes. 10,000 simulations takes about 14 seconds, but is quite a bit less accurate.
 
     numSimulations = int(input("Please input the number of simulations that you'd like the script to run.\
  The higher the number of simulations, the more accurate the results. In general, 10,000 simulations\
  is decently accurate and takes ~14 seconds to run. 100,000 simulations is about as accurate as it gets,\
  but takes ~2 minutes to run.\n"))
 
+    # timing how long the script takes to complete
     startTime = myTime()
 
     while results == False:
-
-        # since this script is mostly just trying random permutations and seeing which ends with the best results,
-        # the higher the number of simulations, the more accurate it will be. I have noticed that ~100,000 simulations 
-        # seems to be enough to get an accurate result almost every time. 100,000 simulations takes approximately 
-        # 2 minutes. 10,000 simulations takes about 14 seconds, but is quite a bit less accurate.
 
         for x in range(numSimulations):
             # initialize the encounter
             encounter = Encounter()
 
+            # add all of the spells from the allSpells matrix into the encounter
             for spellList in allSpells:
                 encounter.addSpells(spellList)
-
 
             # loop over the event array and actually call the aoe event function
             for time in eventTimes:
                 encounter.aoeEvent(time)
 
-            # if the sum is higher than the highest, and it meets our none requirements:
+            # if the sum is higher than the highest, and it meets our 'none' requirements:
             if encounter.spellSum > highestSum and encounter.totalNones <= allowedNones:
                 # record the order of the spells used
                 spellOrder = encounter.abilitiesUsed
@@ -66,11 +77,10 @@ if __name__ == "__main__":
                 results = True
         # if we didn't find any results, increment the allowed nones
         allowedNones += 1
-
     endTime = myTime()
 
     print("\n---------------RESULTS--------------\n")
-    # formatting the output to be readable
+    # formatting the results to be readable
     for x in range(len(spellOrder)):
         # if only one ability was cast for a specific event
         if len(spellOrder[x]) == 1:

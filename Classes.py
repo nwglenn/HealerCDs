@@ -1,3 +1,16 @@
+'''
+This module holds all of the spell information that each class has access to. The spells hold the following information within them:
+
+name: The name of the spell.
+cooldown: The cooldown that the spell will have when cast, in seconds
+status: The actual status of the spells current cooldown (0 means it is ready to cast), in seconds
+hasSpell: Denotes whether or not the person has a particular spell or not
+talentCooldown: Some spells can have a reduced cooldown because of a talent, if this is True, they have a reduced cooldown
+shortCooldown: if talentCooldown is True, this number will be used instead of "cooldown"
+type: This is an artifact of my ambitions, as originally I was going to allow for both Area of Effect (aoe) spells, as well as single target spells. However, as the script stands now it is only performing aoe actions
+owner: The object that owns the spell
+'''
+
 class Person:
 
     def __init__(self, name):

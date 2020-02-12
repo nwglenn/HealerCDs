@@ -3,6 +3,17 @@ from Classes import Person, Monk, Druid, Paladin, Priest, Shaman
 import random
 import time
 
+'''
+This module holds all of the functions that are required by the encounter to run the simulation. The flow looks like this:
+
+The driver module calls the addSpells() function to add spells from the classes into the encounters spellList array
+The driver calls the aoeEvent() function for each event
+aoeEvent() calls reduceCD() (reducing the status) and castRandAvailAoe() (to pick a random spell or two)
+castRandAvailAoe() calls the castSpell() function (puts the spell on cooldown)
+
+The rest are static functions used by the driver to set up which classes are participating in the encounter.
+'''
+
 
 class Encounter(object):
 
