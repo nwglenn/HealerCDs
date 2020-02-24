@@ -3,61 +3,60 @@ Program for determining optimal healer raid-wide area-of-effect (aoe) spells for
 \
 Run the Driver.py to start the application. It will ask for the fight and healer details during execution.\
 \
-\
-If you are unfamiliar with World of Warcraft, here is an example of the script being run along with some example inputs:\
+## If you are unfamiliar with World of Warcraft, here is an example of the script being run along with some example inputs:
 \
 \
 Please enter the time (in seconds) between each event in the encounter. Numbers should be sepearated by a comma and a space. (e.g: 15, 25, 27, 18) etc.\
 The default encounter for this module is the Vectis fight, to use that, type "default"\
-default\
+**default**\
 How many healers does your raid have? (2-5)\
-4\
+**4**\
 --- Next Person ---\
 What class is this person? (Druid, Monk, Paladin, Priest, Shaman)\
-druid\
+**druid**\
 What is the name of the druid?\
-Druid1\
+**Druid1**\
 Does Druid1 have Tree form? (yes/no)\
-yes\
+**yes**\
 Does Druid1 have the talent for short Tranquility? (yes/no)\
-yes\
+**yes**\
 Does Druid1 have the flourish talent? (yes/no)\
-no\
+**no**\
 Person Successfully Added\
 \
 --- Next Person ---\
 What class is this person? (Druid, Monk, Paladin, Priest, Shaman)\
-priest\
+**priest**\
 What is the name of the priest?\
-Priest1\
+**Priest1**\
 what spec is priest1? (holy/disc)\
-disc\
+**disc**\
 Does Priest1 have the Evangelism talent? (yes/no)\
-yes\
+**yes**\
 Person Successfully Added\
 \
 --- Next Person ---\
 What class is this person? (Druid, Monk, Paladin, Priest, Shaman)\
-Shaman\
+**Shaman**\
 What is the name of the Shaman?\
-Shaman1\
+**Shaman1**\
 Does Shaman1 have the Earthen Wall Totem talent? (yes/no)\
-yes\
+**yes**\
 Does Shaman1 have the Ascendence talent? (yes/no)\
-no\
+**no**\
 Person Successfully Added\
 \
 --- Next Person ---\
 What class is this person? (Druid, Monk, Paladin, Priest, Shaman)\
-Paladin\
+**Paladin**\
 What is the name of the paladin?\
-Paladin1\
+**Paladin1**\
 Does Paladin1 have the Holy Avenger talent? (yes/no)\
-no\
+**no**\
 Person Successfully Added\
 \
 Please input the number of simulations that you'd like the script to run. The higher the number of simulations, the more accurate the results. In general, 100,000 simulations is decently accurate and takes ~4 seconds to run. 1,000,000 simulations is about as accurate as it gets, but takes ~45 seconds to run. (This can vary heavily based on CPU speeds/number of cores)\
-1000000\
+**1000000**\
 \
 ---------------RESULTS--------------\
 \
