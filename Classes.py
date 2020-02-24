@@ -11,6 +11,7 @@ type: This is an artifact of my ambitions, as originally I was going to allow fo
 owner: The object that owns the spell
 '''
 
+# create a Person superclass since every object will have a name
 class Person:
 
     def __init__(self, name):

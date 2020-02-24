@@ -1,7 +1,6 @@
 from MyExceptions import Error, FormatError
 from Classes import Person, Monk, Druid, Paladin, Priest, Shaman
 import random
-import time
 
 '''
 This module holds all of the functions that are required by the encounter to run the simulation. The flow looks like this:
@@ -112,29 +111,34 @@ class Encounter(object):
         else:
             return ("Does not have {}".format(spell["name"])), self
 
+    # This function asks the user for their set of event times, or offers them a default, returns an array of times
     @staticmethod
     def getEventTimes():
         userTimes = input('''Please enter the time (in seconds) between each event in the encounter.\
- Numbers should be sepearated by a command and a space. (e.g. 15, 25, 27, 18) etc. 
+ Numbers should be sepearated by a comma and a space. (e.g: 15, 25, 27, 18) etc. 
 The default encounter for this module is the Vectis fight, to use that, type "default"\n''')
         if userTimes.lower() == "default":
             return [20, 25, 25, 27, 53, 25, 26, 25, 54, 25, 25, 26, 54, 25, 25, 25]
         else:
             userTimes = userTimes.split(",")
 
+        # if the length of the split is 1, either there is only one event (unlikely), or they formatted the times wrong
         if len(userTimes) == 1:
             raise FormatError("The formatting was input incorrectly, or there was only one time passed.")
 
+        # build the array of event times
         eventTimes = []
-
         for time in userTimes:
             eventTimes.append(int(time))
         return(eventTimes)
 
+    # static method used for determining which class is in the encounter to call a class specific function
     @staticmethod
     def getClassSpells():
         inputClassType = input("What class is this person? (Druid, Monk, Paladin, Priest, Shaman)\n")
 
+        # using a dictionary as a switch statement
+        # CREDIT: https://jaxenter.com/implement-switch-case-statement-python-138315.html
         switch = {
             "druid": Encounter.createDruid,
             "monk": Encounter.createMonk,
@@ -144,20 +148,25 @@ The default encounter for this module is the Vectis fight, to use that, type "de
         }
 
         try:
+            # call the function according to what the user typed in
             person = switch[inputClassType.lower()]()
         except:
-            print("That was not the correct class name or the word 'done'.")
+            # if that didn't work, they typed something wrong, tell them then call the function again
+            print("That was not the correct class name, please try again.")
             Encounter.getClassSpells()
         
+        # return the array that was retrieved from the switch statement
         return person.spellList
 
     @staticmethod
     def createDruid():
+        # get the information needed to create a druid object
         name = input("What is the name of the druid?\n")
         tree = input("Does {} have Tree form? (yes/no)\n".format(name))
         tranq = input("Does {} have the talent for short Tranquility? (yes/no)\n".format(name))
         flourish = input("Does {} have the flourish talent? (yes/no)\n".format(name))
 
+        # set the druid object values based on the answers
         if tree.lower() == ("yes" or "y"):
             hasTree = True
         else:
@@ -171,6 +180,7 @@ The default encounter for this module is the Vectis fight, to use that, type "de
         else:
             hasFlourish = False
 
+        # actually create and return the druid object
         return Druid(hasTree, hasShortTranq, hasFlourish, name)
 
     @staticmethod

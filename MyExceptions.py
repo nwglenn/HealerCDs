@@ -1,4 +1,8 @@
-# Derived from: https://docs.python.org/3/tutorial/errors.html
+# CREDIT: https://docs.python.org/3/tutorial/errors.html
+
+'''
+Custom exception for when the user inputs the wrong fomat of event times
+'''
 
 class Error(Exception):
     pass
