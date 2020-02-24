@@ -2,7 +2,7 @@
 Program for determining optimal healer raid-wide area-of-effect (aoe) spells for a boss encounter in World of Warcraft\
 \
 Run the Driver.py to start the application. It will ask for the fight and healer details during execution.\
-\
+
 ## If you are unfamiliar with World of Warcraft, here is an example of the script being run along with some example inputs:
 \
 \
