@@ -210,7 +210,7 @@ The default encounter for this module is the Vectis fight, to use that, type "de
     @staticmethod
     def createPriest():
         name = input("What is the name of the priest?\n")
-        spec = input("What spec is {}? (holy/disc)\n".format(name).lower())
+        spec = input("What spec is {}? (holy/disc)\n".format(name.title()))
 
         if spec == "holy":
             talent = input("Does {} have Holy Word: Savlation? (yes/no)\n".format(name))

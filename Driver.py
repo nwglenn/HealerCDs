@@ -77,6 +77,10 @@ if __name__ == "__main__":
  is decently accurate and takes ~4 seconds to run. 1,000,000 simulations is about as accurate as it gets,\
  but takes ~45 seconds to run. (This can vary heavily based on CPU speeds/number of cores)\n"))
 
+    if numSimulations < 4:
+        print("That is not enough simulations, this script requires at least 4. Please try again:")
+        numSimulations = int(input("Please enter the number of simulations:\n"))
+
     # timing how long the script takes to complete
     startTime = myTime()
 
