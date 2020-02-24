@@ -4,6 +4,8 @@ Program for determining optimal healer raid-wide area-of-effect (aoe) spells for
 Run the Driver.py to start the application. It will ask for the fight and healer details during execution.\
 
 ## If you are unfamiliar with World of Warcraft, here is an example of the script being run along with some example inputs:
+(data input by the user has been bolded)\
+\
 Please enter the time (in seconds) between each event in the encounter. Numbers should be sepearated by a comma and a space. (e.g: 15, 25, 27, 18) etc.\
 The default encounter for this module is the Vectis fight, to use that, type "default"\
 **default**\
