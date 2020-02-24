@@ -215,7 +215,7 @@ The default encounter for this module is the Vectis fight, to use that, type "de
         if spec == "holy":
             talent = input("Does {} have Holy Word: Savlation? (yes/no)\n".format(name))
         elif spec == "disc":
-            talent = input("Dpes {} have the Evangelism talent? (yes/no)\n".format(name))
+            talent = input("Does {} have the Evangelism talent? (yes/no)\n".format(name))
         else:
             print("That is not a valid spec name. Please try again.\n")
             Encounter.createPriest()
