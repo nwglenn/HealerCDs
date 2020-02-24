@@ -32,7 +32,7 @@ What is the name of the priest?\
 Priest1\
 what spec is priest1? (holy/disc)\
 disc\
-Dpes Priest1 have the Evangelism talent? (yes/no)\
+Does Priest1 have the Evangelism talent? (yes/no)\
 yes\
 Person Successfully Added\
 \
