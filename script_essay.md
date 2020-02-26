@@ -5,3 +5,89 @@ I had the idea for this script around a year ago, but never sat down and tried t
 Code for the script started off pretty simple, I started with things like "can I build a class and have it cast a spell?" and then once I figured that out, I was able to make it simulate as if time was passing so that the spell could be cast again at a later time. Once I got that working, I was able to create the rest of the classes and then slowly start testing various Encounter functions until it all came together. The hardest part of the testing was first figuring out how I was going to store the information from what the script did (stuff like which spell was cast when, and how I was going to track cooldowns, how each simulation did, etc.) One of the hardest parts was figuring out how to hold the spell information, which I finally ended up with dictionaries, and another was trying to define what was the "best" result for a simulation. At first, it would front load all of the abilities and leave a lot of "none" events so I had to find a way to limit that by just not allowing ANY "none" events at first, then let it have one, then two, then three, etc until it found the simulation that lead to the least amount of nones possible. Another interesting problem that I had was how long the script took to execute. To get decently accurate results it would take upwards of 2+ minutes. I knew that multithreaded processing was a possibility so I looked into that and found the multiprocess python package that allowed me to split up the simulation groups and have 4 simulation threads running at the same time which drastically sped up results. Something that took 10 minutes before was taking ~25 seconds.
 
 The word of advice I would give myself would be "use dictionaries right from the get go" so that I didn't have to spend so much of my time trying to figure out how to generalize my functions and track spell information. That was the slowly portion of the script which everything picked up after I got past that.
+
+
+### EXAMPLE ON HOW TO RUN THE SCRIPT ###
+
+Here is an example of what to input to the script in case it's needed for testing:
+
+Inputs in order: default, 4, druid, druid1, yes, yes, no, priest, priest1, disc, yes, shaman, shaman1, yes, no, paladin, paladin1, no, 1000000
+
+That would look like this:
+
+$ python3 Driver.py
+
+Please enter the time (in seconds) between each event in the encounter. Numbers should be sepearated by a comma and a space. (e.g: 15, 25, 27, 18) etc.
+The default encounter for this module is the Vectis fight, to use that, type "default"
+default
+How many healers does your raid have? (2-5)
+4
+--- Next Person ---
+What class is this person? (Druid, Monk, Paladin, Priest, Shaman)
+druid
+What is the name of the druid?
+Druid1
+Does Druid1 have Tree form? (yes/no)
+yes
+Does Druid1 have the talent for short Tranquility? (yes/no)
+yes
+Does Druid1 have the flourish talent? (yes/no)
+no
+Person Successfully Added
+
+--- Next Person ---
+What class is this person? (Druid, Monk, Paladin, Priest, Shaman)
+priest
+What is the name of the priest?
+Priest1
+what spec is priest1? (holy/disc)
+disc
+Does Priest1 have the Evangelism talent? (yes/no)
+yes
+Person Successfully Added
+
+--- Next Person ---
+What class is this person? (Druid, Monk, Paladin, Priest, Shaman)
+Shaman
+What is the name of the Shaman?
+Shaman1
+Does Shaman1 have the Earthen Wall Totem talent? (yes/no)
+yes
+Does Shaman1 have the Ascendence talent? (yes/no)
+no
+Person Successfully Added
+
+--- Next Person ---
+What class is this person? (Druid, Monk, Paladin, Priest, Shaman)
+Paladin
+What is the name of the paladin?
+Paladin1
+Does Paladin1 have the Holy Avenger talent? (yes/no)
+no
+Person Successfully Added
+
+Please input the number of simulations that you'd like the script to run. The higher the number of simulations, the more accurate the results. In general, 100,000 simulations is decently accurate and takes ~4 seconds to run. 1,000,000 simulations is about as accurate as it gets, but takes ~45 seconds to run. (This can vary heavily based on CPU speeds/number of cores)
+1000000
+
+---------------RESULTS--------------
+
+180      Priest1 used [Power Word: Barrier]
+180 90   Shaman1 used [Healing Tide Totem], Priest1 used [Evangelism]
+120 60   Druid1 used [Tranquility], Shaman1 used [Earthen Wall Totem]
+180      Paladin1 used [Aura Mastery]
+180 90   Shaman1 used [Spirit Link Totem], Priest1 used [Evangelism]
+180      Druid1 used [Tree]
+180      Priest1 used [Power Word: Barrier]
+180 60   Shaman1 used [Healing Tide Totem], Shaman1 used [Earthen Wall Totem]
+120 90   Druid1 used [Tranquility], Priest1 used [Evangelism]
+180      Paladin1 used [Aura Mastery]
+180 60   Shaman1 used [Spirit Link Totem], Shaman1 used [Earthen Wall Totem]
+180      Druid1 used [Tree]
+180 60   Priest1 used [Power Word: Barrier], Shaman1 used [Earthen Wall Totem]
+120      Druid1 used [Tranquility]
+180 90   Shaman1 used [Healing Tide Totem], Priest1 used [Evangelism]
+180 60   Paladin1 used [Aura Mastery], Shaman1 used [Earthen Wall Totem]
+
+Number of cooldowns used: 25
+Sum of their cooldowns: 3540
+Total simulation run time: 48 seconds.
