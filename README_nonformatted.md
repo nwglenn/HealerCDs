@@ -78,6 +78,6 @@ Please input the number of simulations that you'd like the script to run. The hi
 180 90   Shaman1 used [Healing Tide Totem], Priest1 used [Evangelism]
 180 60   Paladin1 used [Aura Mastery], Shaman1 used [Earthen Wall Totem]
 
-Number of cooldowns used: 25\
-Sum of their cooldowns: 3540\
+Number of cooldowns used: 25
+Sum of their cooldowns: 3540
 Total simulation run time: 48 seconds.
