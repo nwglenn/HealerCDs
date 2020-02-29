@@ -122,6 +122,7 @@ if __name__ == "__main__":
 
     print("\n---------------RESULTS--------------\n")
     # formatting the results to be readable
+    print("Cooldown\tUser\t[Spell Name]")
     for x in range(len(spellOrder)):
         # if only one ability was cast for a specific event
         if len(spellOrder[x]) == 1:
